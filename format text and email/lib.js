@@ -18,7 +18,7 @@ function checkEmail(input) {
       atIndex +
       " |dotIndex2:" +
       dotIndex2
-  ); */
+  );  */
 
   if (dotIndex < atIndex < dotIndex2) return true;
   return false;
