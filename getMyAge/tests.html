@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>QUnit Example</title>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/qunit/qunit-2.9.2.css"
+    />
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+    <script src="controller.js"></script>
+    <script>
+      //const yearNow = new Date().getFullYear();
+
+      QUnit.test("getAge - '1991'", function (assert) {
+        const actual = getAge("1991");
+        const expected = "32";
+        assert.equal(actual, expected);
+      });
+
+      QUnit.test("getAge - 'BLANK'", function (assert) {
+        const actual = getAge("");
+        const expected = "";
+        assert.equal(actual, expected);
+      });
+
+      QUnit.test("getAge - 'null'", function (assert) {
+        const actual = getAge(null);
+        const expected = null;
+        assert.equal(actual, expected);
+      });
+
+      QUnit.test("getAge - 'undefined'", function (assert) {
+        const actual = getAge(undefined);
+        const expected = undefined;
+        assert.equal(actual, expected);
+      });
+
+      QUnit.test("getAge - 'Space 1991 space'", function (assert) {
+        const actual = getAge(" 1991 ");
+        const expected = "32";
+        assert.equal(actual, expected);
+      });
+
+      QUnit.test("getAge - 'text'", function (assert) {
+        const actual = getAge("abcd");
+        const expected = NaN;
+        assert.deepEqual(actual, expected); //https://dev.to/michalbryxi/diff-suppressed-as-the-expected-and-actual-results-have-an-equivalent-serialization-3kep
+      });
+
+      QUnit.test("getAge - 'nan'", function (assert) {
+        const actual = getAge(NaN);
+        const expected = NaN;
+        assert.deepEqual(actual, expected);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>QUnit Example</title>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/qunit/qunit-2.9.2.css"
+    />
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+    <script src="lib.js"></script>
+    <script>
+      QUnit.module("fixText", function () {
+        QUnit.test("fix - 'terje'", function (assert) {
+          const actual = fixText("terje");
+          const expected = "Terje";
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - 'blank'", function (assert) {
+          const actual = fixText("");
+          const expected = "";
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - 'blank'", function (assert) {
+          const actual = fixText(null);
+          const expected = null;
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - 'undefined'", function (assert) {
+          const actual = fixText(undefined);
+          const expected = undefined;
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - 'terje '", function (assert) {
+          const actual = fixText("terje ");
+          const expected = "Terje";
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - ' terje'", function (assert) {
+          const actual = fixText(" terje");
+          const expected = "Terje";
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - ' terje '", function (assert) {
+          const actual = fixText(" terje ");
+          const expected = "Terje";
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - '  this Is Just a Test  '", function (assert) {
+          const actual = fixText("  this Is Just a Test  ");
+          const expected = "This is just a test";
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - '  thIs Is Just a Test  '", function (assert) {
+          const actual = fixText("  thIs Is Just a Test  ");
+          const expected = "This is just a test";
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - '  this Is Just a TeSt  '", function (assert) {
+          const actual = fixText("  this Is Just a TeSt  ");
+          const expected = "This is just a test";
+          assert.equal(actual, expected);
+        });
+      });
+      QUnit.module("checkEmail", function () {
+        QUnit.test("check - 'contains @ and dot after'", function (assert) {
+          const actual = checkEmail("hgs@jgs.gk");
+          const expected = false;
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("check - 'dot before'", function (assert) {
+          const actual = checkEmail("h.gs@jgs.gk");
+          const expected = true;
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test(
+          "check - 'dot before @ and dot after ++ spaces'",
+          function (assert) {
+            const actual = checkEmail("   h.g   s @ j  g  s.gk");
+            const expected = true;
+            assert.equal(actual, expected);
+          }
+        );
+
+        QUnit.test("check - 'no @ and .'", function (assert) {
+          const actual = checkEmail("dagadg");
+          const expected = false;
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("check - 'remove spaces'", function (assert) {
+          const actual = checkEmail("  h.gs@jg s.gk");
+          const expected = true;
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("check - 'undefined'", function (assert) {
+          const actual = checkEmail(undefined);
+          const expected = false;
+          assert.equal(actual, expected);
+        });
+
+        QUnit.test("check - 'null'", function (assert) {
+          const actual = checkEmail(null);
+          const expected = false;
+          assert.equal(actual, expected);
+        });
+      });
+    </script>
+  </body>
+</html>
