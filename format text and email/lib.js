@@ -1,6 +1,6 @@
 function fixText(text) {
   if (!text) return text;
-  let fixedText = text.trimStart().trimEnd().toLowerCase();
+  let fixedText = text.trim().toLowerCase();
   fixedText = fixedText.charAt(0).toUpperCase() + fixedText.slice(1);
   if (text) return fixedText;
 }
@@ -21,5 +21,14 @@ function checkEmail(input) {
   );  */
 
   if (dotIndex < atIndex < dotIndex2) return true;
+  return false;
+}
+
+function recogEmail(input) {
+  let fixedEmail = input.replace(" ", "");
+  let atIndex = fixedEmail.indexOf("@");
+
+  console.log(atIndex);
+  if (atIndex > 0) return true;
   return false;
 }
